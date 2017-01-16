@@ -1,82 +1,85 @@
 (function () {
 
-  this.Excerpt = function (element, options) {
-    let that = this;
-    let textSliced;
-    let textOvereage;
+  this.Excerpt = (function () {
+    return {
+      new: (element, options) => {
+        const that = this;
 
-    let readMoreElement = document.createElement('a');
-    let readMoreText = document.createTextNode('More');
-    readMoreElement.appendChild(readMoreText);
+        let textSliced;
+        let textOvereage;
+        let readMoreElement = createElement('a', 'More');
+        let readLessElement = createElement('a', 'Less');
 
-    let readLessElement = document.createElement('a');
-    let readLessText = document.createTextNode('Less');
-    readLessElement.appendChild(readLessText);
+        let defaults = {
+          characters: 3,
+          elipsisText: '...',
+          readMore: false,
+          readMoreContent: readMoreElement ,
+          readLessContent: readLessElement,
+          toggle: false,
+        }
 
-    // Define option defaults
-    let defaults = {
-      characters: 3,
-      elipsisText: '...',
-      readMore: false,
-      readMoreContent: readMoreElement ,
-      readLessContent: readLessElement,
-      toggle: false,
-    }
+        that.options = extendDefaults(defaults, options);
 
-    that.options = extendDefaults(defaults, options);
-
-    if (element.textContent.length > that.options.characters) {
-      textSliced = element.textContent.slice(0, that.options.characters);
-      textOverage = element.textContent.slice(that.options.characters, element.textContent.length);
-    }
-
-    if (that.options.readMore) {
-
-      let elipsis = document.createElement('span');
-      elipsis.textContent = that.options.elipsisText;
-      element.textContent = textSliced;
-      element.appendChild(elipsis);
-      element.appendChild(that.options.readMoreContent);
-
-      if (that.options.toggle) {
-        let hiddenContent = document.createElement('span');
-
-        hiddenContent.textContent = textOverage;
-        hiddenContent.style.display = 'none';
-        hiddenContent.appendChild(readLessElement);
-
-        element.appendChild(that.options.readMoreContent);
-        element.appendChild(hiddenContent);
+      if (element.textContent.length > that.options.characters) {
+        textSliced = element.textContent.slice(0, that.options.characters);
+        textOverage = element.textContent.slice(that.options.characters, element.textContent.length);
       }
 
-    } else {
-      element.textContent = textSliced + that.options.elipsisText;
-    }
+      if (that.options.readMore) {
+        let elipsis = createElement('span', that.options.elipsisText);
 
-    that.options.readMoreContent.addEventListener('click', function (e) {
-      e.preventDefault();
+        element.textContent = textSliced;
+        element.appendChild(elipsis);
+        element.appendChild(that.options.readMoreContent);
 
-      this.style.display = 'none';
-      this.previousElementSibling.style.display = 'none';
-      this.nextElementSibling.style.display = '';
-    });
+        if (that.options.toggle) {
+          let hiddenContent = createElement('span', textOverage);
 
-    that.options.readLessContent.addEventListener('click', function (e) {
-      e.preventDefault();
+          hiddenContent.style.display = 'none';
+          hiddenContent.appendChild(readLessElement);
 
-      this.parentNode.style.display = 'none';
-      this.parentNode.previousElementSibling.style.display = '';
-      this.parentNode.previousElementSibling.previousElementSibling.style.display = '';
-    });
-  }
+          element.appendChild(that.options.readMoreContent);
+          element.appendChild(hiddenContent);
+        }
+      } else {
+        element.textContent = textSliced + that.options.elipsisText;
+      }
 
-  // Utility method to extend defaults with user options
-  var extendDefaults = (source, properties) => {
-    Object.keys(properties).forEach(function (key) {
+      that.options.readMoreContent.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        e.target.style.display = 'none';
+        e.target.previousElementSibling.style.display = 'none';
+        e.target.nextElementSibling.style.display = '';
+      });
+
+      that.options.readLessContent.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        e.target.parentNode.style.display = 'none';
+        e.target.parentNode.previousElementSibling.style.display = '';
+        e.target.parentNode.previousElementSibling.previousElementSibling.style.display = '';
+      });
+
+      }
+    };
+  }());
+
+  let extendDefaults = (source, properties) => {
+    Object.keys(properties).forEach((key) => {
       source[key] = properties[key];
     });
 
     return source;
-  }
+  };
+
+  let createElement = (type, text) => {
+      let element = document.createElement(type);
+      let elementText = document.createTextNode(text);
+      element.appendChild(elementText);
+
+      return element;
+  };
 
 })();

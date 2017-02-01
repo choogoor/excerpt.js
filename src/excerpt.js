@@ -14,54 +14,61 @@
           characters: 3,
           elipsisText: '...',
           readMore: false,
-          readMoreContent: readMoreElement ,
+          readMoreContent: readMoreElement,
           readLessContent: readLessElement,
           toggle: false,
+
+          onShow: () => {
+            readMoreElement.addEventListener('click', (e) => {
+              e.preventDefault();
+
+              e.target.style.display = 'none';
+              e.target.previousElementSibling.style.display = 'none';
+              e.target.nextElementSibling.style.display = '';
+            })
+          },
+
+          onHide: () => {
+            readLessElement.addEventListener('click', (e) => {
+              e.preventDefault();
+
+              e.target.parentNode.style.display = 'none';
+              e.target.parentNode.previousElementSibling.style.display = '';
+              e.target.parentNode.previousElementSibling.previousElementSibling.style.display = '';
+            })
+          },
         }
 
         that.options = extendDefaults(defaults, options);
 
-      if (element.textContent.length > that.options.characters) {
-        textSliced = element.textContent.slice(0, that.options.characters);
-        textOverage = element.textContent.slice(that.options.characters, element.textContent.length);
-      }
-
-      if (that.options.readMore) {
-        let elipsis = createElement('span', that.options.elipsisText);
-
-        element.textContent = textSliced;
-        element.appendChild(elipsis);
-        element.appendChild(that.options.readMoreContent);
-
-        if (that.options.toggle) {
-          let hiddenContent = createElement('span', textOverage);
-
-          hiddenContent.style.display = 'none';
-          hiddenContent.appendChild(readLessElement);
-
-          element.appendChild(that.options.readMoreContent);
-          element.appendChild(hiddenContent);
+        if (element.textContent.length > that.options.characters) {
+          textSliced = element.textContent.slice(0, that.options.characters);
+          textOverage = element.textContent.slice(that.options.characters, element.textContent.length);
         }
-      } else {
-        element.textContent = textSliced + that.options.elipsisText;
-      }
 
-      that.options.readMoreContent.addEventListener('click', (e) => {
-        e.preventDefault();
+        if (that.options.readMore) {
+          let elipsis = createElement('span', that.options.elipsisText);
 
-        e.target.style.display = 'none';
-        e.target.previousElementSibling.style.display = 'none';
-        e.target.nextElementSibling.style.display = '';
-      });
+          element.textContent = textSliced;
+          element.appendChild(elipsis);
+          element.appendChild(that.options.readMoreContent);
 
-      that.options.readLessContent.addEventListener('click', (e) => {
-        e.preventDefault();
+          if (that.options.toggle) {
+            let hiddenContent = createElement('span', textOverage);
 
-        e.target.parentNode.style.display = 'none';
-        e.target.parentNode.previousElementSibling.style.display = '';
-        e.target.parentNode.previousElementSibling.previousElementSibling.style.display = '';
-      });
+            hiddenContent.style.display = 'none';
+            hiddenContent.appendChild(readLessElement);
 
+            element.appendChild(that.options.readMoreContent);
+            element.appendChild(hiddenContent);
+          }
+        } else {
+          element.textContent = textSliced + that.options.elipsisText;
+        }
+
+        that.options.onShow.call(this);
+
+        that.options.onHide.call(this);
       }
     };
   }());

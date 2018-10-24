@@ -19,7 +19,7 @@
           toggle: false,
 
           onShow: () => {
-            readMoreElement.addEventListener('click', (e) => {
+            that.options.readMoreContent.addEventListener('click', (e) => {
               e.preventDefault();
 
               e.target.style.display = 'none';
@@ -29,7 +29,7 @@
           },
 
           onHide: () => {
-            readLessElement.addEventListener('click', (e) => {
+            that.options.readLessContent.addEventListener('click', (e) => {
               e.preventDefault();
 
               e.target.parentNode.style.display = 'none';
@@ -44,26 +44,33 @@
         if (element.textContent.length > that.options.characters) {
           textSliced = element.textContent.slice(0, that.options.characters);
           textOverage = element.textContent.slice(that.options.characters, element.textContent.length);
-        }
 
-        if (that.options.readMore) {
-          let elipsis = createElement('span', that.options.elipsisText);
+          if (that.options.readMore) {
+            let elipsis = createElement('span', that.options.elipsisText);
 
-          element.textContent = textSliced;
-          element.appendChild(elipsis);
-          element.appendChild(that.options.readMoreContent);
-
-          if (that.options.toggle) {
-            let hiddenContent = createElement('span', textOverage);
-
-            hiddenContent.style.display = 'none';
-            hiddenContent.appendChild(readLessElement);
-
+            element.textContent = textSliced;
+            element.appendChild(elipsis);
             element.appendChild(that.options.readMoreContent);
-            element.appendChild(hiddenContent);
+
+            if (that.options.toggle) {
+              let hiddenContent = createElement('span', textOverage);
+
+              hiddenContent.style.display = 'none';
+              hiddenContent.appendChild(readLessElement);
+
+              element.appendChild(that.options.readMoreContent);
+              element.appendChild(hiddenContent);
+            } else {
+              let hiddenContent = createElement('span', textOverage);
+
+              hiddenContent.style.display = 'none';
+
+              element.appendChild(that.options.readMoreContent);
+              element.appendChild(hiddenContent);
+            }
+          } else {
+            element.textContent = textSliced + that.options.elipsisText;
           }
-        } else {
-          element.textContent = textSliced + that.options.elipsisText;
         }
 
         that.options.onShow.call(this);
@@ -82,11 +89,11 @@
   };
 
   let createElement = (type, text) => {
-      let element = document.createElement(type);
-      let elementText = document.createTextNode(text);
-      element.appendChild(elementText);
+    let element = document.createElement(type);
+    let elementText = document.createTextNode(text);
+    element.appendChild(elementText);
 
-      return element;
+    return element;
   };
 
 })();

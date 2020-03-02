@@ -2,9 +2,15 @@
   "name": "excerpt",
   "version": "1.0.0",
   "description": "Pure lightweight JS library for truncating large texts.",
-  "main": "index.js",
+  "main": "dist/threesixty.js",
+  "files": [
+    "src/*",
+    "dist/*"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "watch": "webpack --watch"
   },
   "repository": {
     "type": "git",
@@ -21,7 +27,12 @@
   },
   "homepage": "https://github.com/choogoor/excerptjs#readme",
   "devDependencies": {
-    "grunt": "^1.0.1",
-    "grunt-contrib-uglify": "^2.0.0"
+    "@babel/cli": "^7.7.x",
+    "@babel/core": "7.7.x",
+    "@babel/plugin-proposal-class-properties": "^7.7.x",
+    "@babel/preset-env": "7.7.x",
+    "babel-loader": "8.0.x",
+    "webpack": "4.41.x",
+    "webpack-cli": "3.3.x"
   }
 }

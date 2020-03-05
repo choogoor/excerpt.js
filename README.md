@@ -43,6 +43,7 @@ const excerpt = new Excerpt(document.getElementById('your-element-id'), {
 - `collapse` - allows you to toggle your excerpt, once you made your text expandable. Default value is *false*.
 - `readMoreText` - you can set the value for your excerpt expanding link. Default value is *More*.
 - `readLessText` - you can set the value for your excerpt collapsing link. Default value is *Less*.
+- `readMoreContent` and `readLessContent` - you can specify your own toggle handle elements. Default values are *anchor* tags with *#* as *href* option.
 
 ## Licence
 

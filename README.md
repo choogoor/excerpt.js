@@ -6,7 +6,7 @@ This is a small lib used to generate a trimmed-down version of your text, writte
 
 ### Install
 ```console
-npm install excerpt.js
+$ npm install excerpt.js
 ```
 
 ### Example

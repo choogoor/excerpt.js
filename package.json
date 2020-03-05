@@ -1,8 +1,8 @@
 {
-  "name": "excerpt",
-  "version": "1.0.0",
+  "name": "excerpt.js",
+  "version": "1.0.1",
   "description": "Pure lightweight JS library for truncating large texts.",
-  "main": "dist/threesixty.js",
+  "main": "dist/excerpt.min.js",
   "files": [
     "src/*",
     "dist/*"
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/choogoor/excerptjs.git"
+    "url": "git+https://github.com/choogoor/excerpt.js.git"
   },
   "keywords": [
     "excerpt",
@@ -23,9 +23,9 @@
   "author": "Aleksandar Cugurovic",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/choogoor/excerptjs/issues"
+    "url": "https://github.com/choogoor/excerpt.js/issues"
   },
-  "homepage": "https://github.com/choogoor/excerptjs#readme",
+  "homepage": "https://github.com/choogoor/excerpt.js#readme",
   "devDependencies": {
     "@babel/cli": "^7.7.x",
     "@babel/core": "7.7.x",

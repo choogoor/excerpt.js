@@ -2,6 +2,8 @@
 
 This is a small lib used to generate a trimmed-down version of your text, written in vanilla JS with no dependencies.
 
+[DEMO](https://codepen.io/choogoor/pen/WNvZyGX)
+
 ## Usage
 
 ### Install

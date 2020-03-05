@@ -2,9 +2,17 @@
 
 This is a small lib used to generate a trimmed-down version of your text, written in vanilla JS with no dependencies.
 
-## Example
+## Usage
 
+### Install
+```console
+npm install excerpt.js
+```
+
+### Example
 ```js
+import Excerpt from 'excerpt.js';
+
 const excerpt = new Excerpt(document.getElementById('your-element-id'), {
   characters: 100
 });

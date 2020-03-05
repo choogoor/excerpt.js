@@ -1,6 +1,6 @@
 {
   "name": "excerpt.js",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Pure lightweight JS library for truncating large texts.",
   "main": "dist/excerpt.min.js",
   "files": [

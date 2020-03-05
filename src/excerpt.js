@@ -1,4 +1,4 @@
-import createElement from './lib/createElement.js';
+import createElement from './helper/createElement.js';
 
 export default class Excerpt {
   constructor (element, options = {}) {

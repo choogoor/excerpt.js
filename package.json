@@ -1,6 +1,6 @@
 {
   "name": "excerpt.js",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Pure lightweight JS library for truncating large texts.",
   "main": "dist/excerpt.min.js",
   "files": [
@@ -27,12 +27,12 @@
   },
   "homepage": "https://github.com/choogoor/excerpt.js#readme",
   "devDependencies": {
-    "@babel/cli": "^7.7.x",
-    "@babel/core": "7.7.x",
-    "@babel/plugin-proposal-class-properties": "^7.7.x",
-    "@babel/preset-env": "7.7.x",
+    "@babel/cli": "^7.8.x",
+    "@babel/core": "7.8.x",
+    "@babel/plugin-proposal-class-properties": "^7.8.x",
+    "@babel/preset-env": "7.8.x",
     "babel-loader": "8.0.x",
-    "webpack": "4.41.x",
+    "webpack": "4.42.x",
     "webpack-cli": "3.3.x"
   }
 }
